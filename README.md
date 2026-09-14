@@ -48,7 +48,7 @@ As migrações Flyway criam as tabelas automaticamente na primeira execução.
 
 ### Variáveis de ambiente
 
-Copie `.env.example` para `.env` e ajuste se necessário.
+Copie `.env.example` para `.env` e ajuste se necessário. Tanto a aplicação (`spring.config.import`) quanto o Docker Compose leem esse arquivo automaticamente. Variáveis de ambiente do sistema têm prioridade sobre ele.
 
 | Variável | Padrão | Descrição |
 | --- | --- | --- |

@@ -2,6 +2,10 @@ spring:
   application:
     name: forum-api
 
+  config:
+    # Carrega variaveis de um arquivo .env na raiz (opcional). O Docker Compose le o mesmo arquivo.
+    import: optional:file:.env[.properties]
+
   datasource:
     url: ${DB_URL:jdbc:mysql://localhost:3306/forum?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
     username: ${DB_USERNAME:forum_user}
@@ -13,8 +17,7 @@ spring:
     hibernate:
       ddl-auto: validate
     properties:
-      hibernate:
-        format_sql: true
+      "[hibernate.format_sql]": true
 
   flyway:
     enabled: true
