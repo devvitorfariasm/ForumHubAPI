@@ -2,7 +2,6 @@ package com.example.forum.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +16,9 @@ public class JwtService {
     private final SecretKey key;
     private final long expirationMinutes;
 
-    public JwtService(
-            @Value("${security.jwt.secret}") String secret,
-            @Value("${security.jwt.expiration-minutes}") long expirationMinutes
-    ) {
-        this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-        this.expirationMinutes = expirationMinutes;
+    public JwtService(JwtProperties properties) {
+        this.key = Keys.hmacShaKeyFor(properties.secret().getBytes(StandardCharsets.UTF_8));
+        this.expirationMinutes = properties.expirationMinutes();
     }
 
     public String generate(UserDetails user) {

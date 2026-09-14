@@ -95,6 +95,13 @@
             <version>${springdoc.version}</version>
         </dependency>
 
+        <!-- Gera metadados das @ConfigurationProperties para o IDE reconhecer app.* e security.* -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!-- Testes -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -127,6 +134,15 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- JDK 23+ desliga o processamento de anotacoes por padrao; necessario para o configuration-processor -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <proc>full</proc>
+                </configuration>
             </plugin>
         </plugins>
     </build>
